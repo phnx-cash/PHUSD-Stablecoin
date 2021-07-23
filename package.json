@@ -1,0 +1,20 @@
+{
+  "name": "phusd_coin",
+  "version": "1.0.0",
+  "description": "this is the solidity project containing smart contracts on the Phoenix Cash Stablecoin (PHUSD) of the Phoenix Cash Project",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "stablecoin"
+  ],
+  "author": "Drikssy Rodgers",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.2.0"
+  }
+}
