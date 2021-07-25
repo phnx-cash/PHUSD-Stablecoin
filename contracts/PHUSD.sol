@@ -21,13 +21,14 @@ contract PHUSDStablecoin is ERC20, Ownable, AccessControl {
 
     /* ========== CONSTRUCTOR ========== */
 
-    constructor(string name, string symbol) ERC20(name, symbol) {}
+    constructor() ERC20("Phoenix Cash USD", "PHUSD") {}
 
 
 
     /* ========== PUBLIC FUNCTIONS ========== */
 
-    function setMinter(address minter) onlyOwner {
+    function setMinter(address _minter) external onlyOwner {
+        minter = _minter;
         _setupRole(MINTER_ROLE, minter);
     }
 
@@ -35,9 +36,13 @@ contract PHUSDStablecoin is ERC20, Ownable, AccessControl {
         _mint(to, amount);
     }
 
+    function burn(address to, uint256 amount) onlyMinter public {
+        _burn(to, amount);
+    }
+
     /* ========== VIEWS ========== */
 
-    function getMinter() public view returns (address memory _minter) {
+    function getMinter() public view returns (address _minter) {
         _minter = minter;
     }
 
