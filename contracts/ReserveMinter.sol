@@ -57,7 +57,7 @@ contract ReserveMinter is Ownable, AccessControl {
 
     /* ========== PUBLIC FUNCTIONS ========== */
 
-    function addCollateralToken(address tokenAddress) public onlyAdmin {
+    function addCollateralToken(address tokenAddress) public {
         require(!collateralAddresses[tokenAddress], "token address submitted already as collateral");
         collateralAddresses[tokenAddress] = true;
         collateralAddressesArray.push(tokenAddress);
@@ -65,7 +65,7 @@ contract ReserveMinter is Ownable, AccessControl {
     }
 
 
-    function mint1t1PHUSD(address collateralAddress, uint256 collateralAmount) external onlyAdmin collateralGiven(collateralAddress) {
+    function mint1t1PHUSD(address collateralAddress, uint256 collateralAmount) external collateralGiven(collateralAddress) {
 
 
         SafeERC20.safeTransferFrom(ERC20(collateralAddress), msg.sender, address(this), collateralAmount);
@@ -89,7 +89,6 @@ contract ReserveMinter is Ownable, AccessControl {
 
     event CollateralTokenWhitelisted(address collateralAddress);
     event CollateralBalanceAdded(address collateralAddress, uint256 collateralAmount);
-    event PHUSDMinted(uint256 PHUSDAmount);
 
 
 
