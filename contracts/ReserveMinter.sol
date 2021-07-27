@@ -57,7 +57,7 @@ contract ReserveMinter is Ownable, AccessControl {
 
     /* ========== PUBLIC FUNCTIONS ========== */
 
-    function addCollateralToken(address tokenAddress) public {
+    function addCollateralToken(address tokenAddress) onlyAdmin public {
         require(!collateralAddresses[tokenAddress], "token address submitted already as collateral");
         collateralAddresses[tokenAddress] = true;
         collateralAddressesArray.push(tokenAddress);
